@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [guests, setGuests] = useState(6);
+  const TICKET_PRICE = 45;
+
   return (
     <div className="app">
       <header className="header">
@@ -18,12 +22,61 @@ function App() {
             Grab a glass, pick your pieces, and let us do the heavy lifting.
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#" className="btn-primary">Book Your Session</a>
+            <a href="#booking" className="btn-primary">Book Your Session</a>
             <a href="tel:+19193580755" className="btn-secondary" style={{ margin: 0 }}>Call To Discuss: (919) 358-0755</a>
           </div>
         </section>
 
-        <section className="how-it-works">
+        <section id="booking" className="booking-section">
+          <div className="section-title">
+            <h2>Reserve Your Room</h2>
+          </div>
+          
+          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div className="form-group">
+              <label>Group / Bachelorette Name</label>
+              <input type="text" placeholder="e.g. Sarah's Last Disco" />
+            </div>
+
+            <div className="form-group">
+              <label>Number of Guests</label>
+              <input 
+                type="number" 
+                value={guests} 
+                onChange={(e) => setGuests(parseInt(e.target.value) || 0)}
+                min="1" 
+                max="20"
+              />
+              <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
+                For groups larger than 20, please <a href="tel:+19193580755" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>call us</a>.
+              </p>
+            </div>
+
+            <div className="price-summary">
+              <div className="price-row">
+                <span>Individual Ticket</span>
+                <span>${TICKET_PRICE}</span>
+              </div>
+              <div className="price-row">
+                <span>Guests</span>
+                <span>x {guests}</span>
+              </div>
+              <div className="price-total">
+                <span>Estimated Total</span>
+                <span>${guests * TICKET_PRICE}</span>
+              </div>
+            </div>
+
+            <button className="btn-primary" style={{ width: '100%', border: 'none', cursor: 'pointer' }}>
+              Create Group & Pay Deposit
+            </button>
+            <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.9rem', color: 'var(--secondary)' }}>
+              Pay a $50 deposit now. We'll email you a link for your guests to pay their individual tickets.
+            </p>
+          </div>
+        </section>
+
+        <section className="how-it-works" style={{ marginTop: '6rem' }}>
           <div className="section-title">
             <h2>How It Works</h2>
           </div>

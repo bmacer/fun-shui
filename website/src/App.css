@@ -138,11 +138,58 @@
   }
 }
 
-footer {
-  text-align: center;
-  padding: 4rem 1rem;
-  color: var(--white);
-  background: var(--primary);
+.booking-section {
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 12px;
+  border: 2px solid var(--accent);
   margin-top: 4rem;
-  border-top: 3px solid var(--accent);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+}
+
+.price-summary {
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--accent);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.price-total {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary);
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  margin-top: 1rem;
 }
