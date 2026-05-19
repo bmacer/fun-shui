@@ -34,6 +34,21 @@ Fun Shui is a "ladies night out" social experience that gamifies furniture rearr
 *   **In-Scope:** Physical space requirements, 3D capture/modeling logic, wine bar integration, business model presentation.
 *   **Out-of-Scope (for now):** Professional interior design services, high-end new furniture sales, standalone bar operations (bar exists only to support the experience).
 
-## 7. Next Steps
-1.  Create the `/business` HTML page to present this model.
-2.  Scaffold the website project within the repository.
+## 7. Website Requirements
+*   **Primary Goal:** Conversion and Booking. The site must make it easy for group organizers and individuals to purchase tickets.
+*   **Tagline:** "Sip and Design" (highlighting wine as integral to the experience).
+*   **Booking Engine:** 
+    *   Individual ticket sales.
+    *   Group bucketing (e.g., "Join a Group" field) to ensure friends end up in the same room.
+    *   Capacity management for multiple parallel room sessions.
+*   **"How it Works" (Visual Storytelling):** A prominent section using large photos/illustrations to explain the 4-step process:
+    1.  **Choose Your Base:** Select your flooring/rug to set the room's foundation.
+    2.  **Pick the Heavy Hitters:** Hand-select your large furniture pieces.
+    3.  **The Heavy Lifting:** Our professional movers (the "Fun Shui Team") move the big stuff into place for you.
+    4.  **Sip and Walk:** Grab your wine and wander the small-item inventory to find the perfect finishing touches.
+*   **Digital Handoff:** Direct email links for 3D models and highlight reels (no user accounts).
+
+## 8. Next Steps
+1.  Scaffold the website project (Vite + React + TS).
+2.  Implement the landing page with the "How it Works" storytelling.
+3.  Build the booking funnel mockups.
