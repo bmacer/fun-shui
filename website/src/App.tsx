@@ -4,7 +4,10 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <img src="/logo.png" alt="Fun Shui Logo" className="logo-img" />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+          <img src="/logo.png" alt="Fun Shui Logo" className="logo-img" />
+          <a href="tel:+19193580755" className="btn-secondary" style={{ position: 'absolute', right: '1rem' }}>Call Us</a>
+        </div>
       </header>
 
       <main className="container">
@@ -14,7 +17,10 @@ function App() {
             Asheville's first social furniture rearrangement experience. 
             Grab a glass, pick your pieces, and let us do the heavy lifting.
           </p>
-          <a href="#" className="btn-primary">Book Your Session</a>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+            <a href="#" className="btn-primary">Book Your Session</a>
+            <a href="tel:+19193580755" className="btn-secondary" style={{ margin: 0 }}>Call To Discuss: (919) 358-0755</a>
+          </div>
         </section>
 
         <section className="how-it-works">
