@@ -45,3 +45,4 @@ The website and business materials MUST reflect these four steps:
 *   **Keep it Tactile:** The UI should feel elegant but "uniquely Asheville"—warm, vintage-inspired, and social.
 *   **Conversion First:** The primary goal of the website is to drive group bookings.
 *   **Standardized Styling:** Do NOT introduce Tailwind or other CSS frameworks without explicit instruction. Maintain the existing Vanilla CSS variables.
+*   **Document Maintenance:** Agents MUST keep this `AGENTS.md` file updated. Whenever a significant architectural decision, branding change, or workflow shift is recommended and approved, this file should be updated to reflect the new state of the project. This is the living source of truth.
