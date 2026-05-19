@@ -4,14 +4,13 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>Fun Shui</h1>
-        <p className="tagline">Sip and Design</p>
+        <img src="/logo.png" alt="Fun Shui Logo" className="logo-img" />
       </header>
 
       <main className="container">
         <section className="hero">
           <h2>Ready to play with your space?</h2>
-          <p style={{ marginBottom: '2rem', fontSize: '1.2rem' }}>
+          <p style={{ marginBottom: '2rem', fontSize: '1.2rem', opacity: 0.9 }}>
             Asheville's first social furniture rearrangement experience. 
             Grab a glass, pick your pieces, and let us do the heavy lifting.
           </p>
@@ -25,7 +24,7 @@ function App() {
           
           <div className="steps-grid">
             <div className="step-card">
-              <div className="step-image">[ Image: Choosing Rugs/Flooring ]</div>
+              <div className="step-image">Step 01: The Canvas</div>
               <div className="step-content">
                 <div className="step-number">01</div>
                 <h3>Choose Your Base</h3>
@@ -34,7 +33,7 @@ function App() {
             </div>
 
             <div className="step-card">
-              <div className="step-image">[ Image: Hand-selecting Furniture ]</div>
+              <div className="step-image">Step 02: Selection</div>
               <div className="step-content">
                 <div className="step-number">02</div>
                 <h3>Pick the Heavy Hitters</h3>
@@ -43,7 +42,7 @@ function App() {
             </div>
 
             <div className="step-card">
-              <div className="step-image">[ Image: The Fun Shui Movers ]</div>
+              <div className="step-image">Step 03: The Muscle</div>
               <div className="step-content">
                 <div className="step-number">03</div>
                 <h3>The Heavy Lifting</h3>
@@ -52,7 +51,7 @@ function App() {
             </div>
 
             <div className="step-card">
-              <div className="step-image">[ Image: Sipping and Accessorizing ]</div>
+              <div className="step-image">Step 04: The Polish</div>
               <div className="step-content">
                 <div className="step-number">04</div>
                 <h3>Sip and Walk</h3>

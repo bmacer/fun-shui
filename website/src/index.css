@@ -1,9 +1,11 @@
 :root {
-  --primary: #2d3436;
-  --accent: #fab1a0;
+  --primary: #4B006E;
+  --accent: #D4AF37;
+  --accent-light: #E5C76B;
   --secondary: #636e72;
-  --light: #f9f9f9;
+  --light: #FDFCF0;
   --white: #ffffff;
+  --dark: #2D0044;
   --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 

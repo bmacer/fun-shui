@@ -6,10 +6,10 @@
     <title>Fun Shui | Business Model</title>
     <style>
         :root {
-            --primary: #2d3436;
-            --accent: #fab1a0;
-            --secondary: #636e72;
-            --light: #f9f9f9;
+            --primary: #4B006E;
+            --accent: #D4AF37;
+            --dark: #2D0044;
+            --light: #FDFCF0;
             --white: #ffffff;
             --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
@@ -24,10 +24,15 @@
         }
 
         header {
-            background: var(--white);
-            border-bottom: 1px solid #ddd;
+            background: var(--primary);
             padding: 2rem 1rem;
             text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .logo-img {
+            max-width: 250px;
+            height: auto;
         }
 
         .container {
@@ -38,19 +43,6 @@
 
         h1, h2, h3 {
             color: var(--primary);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .subtitle {
-            color: var(--secondary);
-            font-style: italic;
-            margin-bottom: 2rem;
         }
 
         .grid {
@@ -74,19 +66,22 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            color: var(--primary);
         }
 
         .highlight-box {
-            background: var(--accent);
-            color: var(--primary);
+            background: var(--dark);
+            color: var(--white);
             padding: 2rem;
             border-radius: 8px;
             margin: 2rem 0;
             text-align: center;
+            border: 1px solid var(--accent);
         }
 
         .highlight-box h2 {
             margin-top: 0;
+            color: var(--accent);
         }
 
         ul {
@@ -99,7 +94,8 @@
 
         .tag {
             display: inline-block;
-            background: #eee;
+            background: var(--primary);
+            color: var(--accent);
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
             font-size: 0.8rem;
@@ -111,20 +107,17 @@
         footer {
             text-align: center;
             padding: 3rem 1rem;
-            color: var(--secondary);
+            color: var(--white);
+            background: var(--primary);
             font-size: 0.9rem;
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
+            border-top: 3px solid var(--accent);
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Fun Shui</h1>
-    <p class="subtitle">"Sip, Arrange, and Play" — Asheville's Premier Social Furniture Experience</p>
+    <img src="website/public/logo.png" alt="Fun Shui Logo" class="logo-img">
 </header>
 
 <div class="container">
@@ -175,11 +168,6 @@
             </ul>
         </div>
     </div>
-
-    <section style="margin-top: 4rem;">
-        <h2>Why Asheville?</h2>
-        <p>Asheville is a hub for vintage finds, mountain aesthetics, and a thriving "experience economy." Fun Shui bridges the gap between the city's love for thrift culture and its demand for innovative group entertainment.</p>
-    </section>
 </div>
 
 <footer>
