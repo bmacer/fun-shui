@@ -45,4 +45,5 @@ The website and business materials MUST reflect these four steps:
 *   **Keep it Tactile:** The UI should feel elegant but "uniquely Asheville"—warm, vintage-inspired, and social.
 *   **Conversion First:** The primary goal of the website is to drive group bookings.
 *   **Standardized Styling:** Do NOT introduce Tailwind or other CSS frameworks without explicit instruction. Maintain the existing Vanilla CSS variables.
+*   **GitHub CLI Management:** The user has multiple usernames configured in `gh` CLI. Whenever using the `gh` tool, you MUST check `gh auth status`. If the active user for `github.com` is not `bmacer`, you MUST perform a `gh auth switch --hostname github.com --user bmacer` before proceeding with any repository operations (pushing, creating PRs, etc.).
 *   **Document Maintenance:** Agents MUST keep this `AGENTS.md` file updated. Whenever a significant architectural decision, branding change, or workflow shift is recommended and approved, this file should be updated to reflect the new state of the project. This is the living source of truth.
