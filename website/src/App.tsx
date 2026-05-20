@@ -9,7 +9,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
-          <img src="/logo.png" alt="Fun Shui Logo" className="logo-img" />
+          <img src="logo.png" alt="Fun Shui Logo" className="logo-img" />
           <a href="tel:+19193580755" className="btn-secondary" style={{ position: 'absolute', right: '1rem' }}>Call Us</a>
         </div>
       </header>
