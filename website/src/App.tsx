@@ -22,7 +22,7 @@ function App() {
             playsInline
             className="hero-video"
           >
-            <source src="/short.mp4" type="video/mp4" />
+            <source src={`${import.meta.env.BASE_URL}short.mp4`} type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>
           <div className="hero-content">
