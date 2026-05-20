@@ -16,20 +16,20 @@ Welcome to the **Fun Shui** repository. This document provides the essential con
 *   **Documentation:** Requirements and brainstorming are kept in `docs/brainstorms/`.
 
 ## 3. Brand & Visual Identity
-The branding is inspired by the provided logo: a deep purple house with a gold hourglass/wine glass infinity symbol.
-*   **Primary Purple:** `#4B006E` (Headers, footers, primary text)
-*   **Metallic Gold:** `#D4AF37` (Accents, borders, buttons, highlights)
-*   **Dark Plum:** `#2D0044` (Hero backgrounds, immersive sections)
-*   **Cream Background:** `#FDFCF0` (Main page background for a vintage/boutique feel)
-*   **Font:** 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif (Clean and modern).
+The branding is a "Psychedelic-Corporate" or "Immersive Minimalist" aesthetic, inspired by Meow Wolf.
+*   **Foundation:** Deep Plum/Black (`#0F0016`) for an atmospheric, "void-like" warehouse feel.
+*   **Primary Accent:** Metallic Gold (`#D4AF37`) for critical UI elements, buttons, and "glowing" highlights.
+*   **Secondary Accents:** Deep Purple (`#4B006E`) and subtle gradients to create depth.
+*   **Typography:** Bold, high-contrast, often all-caps headers. Use 'Segoe UI', Tahoma, or other clean sans-serifs in maximalist sizes.
+*   **Layout:** "Bento Box" style grids, overlapping elements, and non-traditional spacing to break the standard grid.
 
 ## 4. Product Workflows & Logic
 ### The "How it Works" Process
-The website and business materials MUST reflect these four steps:
-1.  **Choose Your Base:** Selecting flooring/rugs.
-2.  **Pick the Heavy Hitters:** Selecting large furniture.
-3.  **The Heavy Lifting:** The "Fun Shui Team" (staff) moves the large items for the participants.
-4.  **Sip and Walk:** Participants sip wine while accessorizing with smaller decor.
+The website acts as a **Digital Portal**. The 4-step process is framed as "Rearranging Your Reality":
+1.  **Select Your Base:** Flooring/Rugs.
+2.  **The Heavy Hitters:** Large furniture selection.
+3.  **The Dimensional Shift:** The "Fun Shui Team" (staff) moves items, allowing the participant to remain in "the flow."
+4.  **The Finishing Glow:** Sips and accessories.
 
 ### Booking Model
 *   **Model:** Individual Tickets (with group bucketing/naming).
@@ -42,8 +42,9 @@ The website and business materials MUST reflect these four steps:
 *   `logo.png`: Located in `website/public/logo.png`.
 
 ## 6. Development Mandates
-*   **Keep it Tactile:** The UI should feel elegant but "uniquely Asheville"—warm, vintage-inspired, and social.
-*   **Conversion First:** The primary goal of the website is to drive group bookings.
+*   **Immersive First:** The UI should feel like a destination, not just a page. Use dark backgrounds, gradients, and subtle animations (glow, glitch, or hover states).
+*   **Maximalist Energy:** Don't be afraid of large typography or bold imagery. Mirror the sensory density of the Meow Wolf experience.
+*   **Conversion First:** Despite the immersive aesthetic, the primary goal is still group bookings. The "Book" and "Call" buttons must remain high-contrast and easy to find.
 *   **Standardized Styling:** Do NOT introduce Tailwind or other CSS frameworks without explicit instruction. Maintain the existing Vanilla CSS variables.
 *   **GitHub CLI Management:** The user has multiple usernames configured in `gh` CLI. Whenever using the `gh` tool, you MUST check `gh auth status`. If the active user for `github.com` is not `bmacer`, you MUST perform a `gh auth switch --hostname github.com --user bmacer` before proceeding with any repository operations (pushing, creating PRs, etc.).
 *   **Document Maintenance:** Agents MUST keep this `AGENTS.md` file updated. Whenever a significant architectural decision, branding change, or workflow shift is recommended and approved, this file should be updated to reflect the new state of the project. This is the living source of truth.

@@ -9,121 +9,101 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
-          <img src={logo} alt="Fun Shui Logo" className="logo-img" />
-          <a href="tel:+19193580755" className="btn-secondary" style={{ position: 'absolute', right: '1rem' }}>Call Us</a>
-        </div>
+        <img src={logo} alt="Fun Shui Logo" className="logo-img" />
+        <a href="tel:+19193580755" className="btn-secondary">Call Us</a>
       </header>
 
-      <main className="container">
+      <main>
         <section className="hero">
-          <h2>Ready to play with your space?</h2>
-          <p style={{ marginBottom: '2rem', fontSize: '1.2rem', opacity: 0.9 }}>
-            Asheville's first social furniture rearrangement experience. 
-            Grab a glass, pick your pieces, and let us do the heavy lifting.
-          </p>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#booking" className="btn-primary">Book Your Session</a>
-            <a href="tel:+19193580755" className="btn-secondary" style={{ margin: 0 }}>Call To Discuss: (919) 358-0755</a>
+          <h2>REARRANGE YOUR REALITY</h2>
+          <p>Asheville's Immersive Furniture Playground</p>
+          <div style={{ display: 'flex', gap: '2rem' }}>
+            <a href="#booking" className="btn-primary">Pick a Portal</a>
+            <a href="tel:+19193580755" className="btn-secondary">Talk to a Sommelier</a>
           </div>
         </section>
 
-        <section id="booking" className="booking-section">
-          <div className="section-title">
-            <h2>Reserve Your Room</h2>
-          </div>
-          
-          <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <div className="form-group">
-              <label>Group / Bachelorette Name</label>
-              <input type="text" placeholder="e.g. Sarah's Last Disco" />
+        <div className="container">
+          <section className="how-it-works">
+            <div className="section-title" style={{ textAlign: 'left', marginBottom: '4rem' }}>
+              <h2 style={{ fontSize: '3rem', fontWeight: 900 }}>The Dimension Shift</h2>
+              <p style={{ color: 'var(--accent)', letterSpacing: '2px' }}>HOW TO SIP AND DESIGN</p>
             </div>
+            
+            <div className="bento-grid">
+              <div className="bento-item span-8">
+                <div className="item-number">01</div>
+                <h3>The Base</h3>
+                <p>Select your foundational flooring. Vintage rugs, exotic textures, and the starting point of your spatial journey.</p>
+              </div>
+              <div className="bento-item span-4" style={{ background: 'var(--primary)', border: 'none' }}>
+                <p style={{ color: 'white', fontSize: '1.2rem', fontWeight: 'bold' }}>"The best way to predict the future is to design it."</p>
+              </div>
+              
+              <div className="bento-item span-4">
+                <div className="item-number">02</div>
+                <h3>Heavy Hitters</h3>
+                <p>Hand-select the massive anchors of your room. You point, we prepare.</p>
+              </div>
+              <div className="bento-item span-8">
+                <div className="item-number">03</div>
+                <h3>Dimensional Shift</h3>
+                <p>Our Fun Shui Butlers perform the heavy lifting. Stay in the flow. Stay with your wine. Watch the space evolve in real-time.</p>
+              </div>
 
-            <div className="form-group">
-              <label>Number of Guests</label>
-              <input 
-                type="number" 
-                value={guests} 
-                onChange={(e) => setGuests(parseInt(e.target.value) || 0)}
-                min="1" 
-                max="20"
-              />
-              <p style={{ fontSize: '0.8rem', color: '#666', marginTop: '0.5rem' }}>
-                For groups larger than 20, please <a href="tel:+19193580755" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>call us</a>.
+              <div className="bento-item span-12" style={{ textAlign: 'center', background: 'linear-gradient(45deg, var(--bg-darker), var(--primary))' }}>
+                <div className="item-number">04</div>
+                <h3 style={{ fontSize: '3rem' }}>The Finishing Glow</h3>
+                <p style={{ maxWidth: '600px', margin: '0 auto', fontSize: '1.2rem' }}>Sip, walk, and accessorize. The final layer of art, lighting, and curiosities that make the space yours.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="booking" className="booking-section">
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', fontWeight: 900 }}>Open the Portal</h2>
+            
+            <div style={{ maxWidth: '600px' }}>
+              <div className="form-group" style={{ marginBottom: '2rem' }}>
+                <label style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem', marginBottom: '1rem', display: 'block' }}>Event Name / Bachelorette Group</label>
+                <input type="text" placeholder="THE COSMIC DISCO" style={{ width: '100%' }} />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: '2rem' }}>
+                <label style={{ textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.9rem', marginBottom: '1rem', display: 'block' }}>Number of Explorers</label>
+                <input 
+                  type="number" 
+                  value={guests} 
+                  onChange={(e) => setGuests(parseInt(e.target.value) || 0)}
+                  min="1" 
+                  style={{ width: '100%' }}
+                />
+              </div>
+
+              <div className="price-summary" style={{ padding: '2rem', marginBottom: '2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem', opacity: 0.7 }}>
+                  <span>Individual Ticket</span>
+                  <span>${TICKET_PRICE}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.5rem', fontWeight: 'bold' }}>
+                  <span>Total Contribution</span>
+                  <span style={{ color: 'var(--accent)' }}>${guests * TICKET_PRICE}</span>
+                </div>
+              </div>
+
+              <button className="btn-primary" style={{ width: '100%', cursor: 'pointer' }}>
+                Initialize Session
+              </button>
+              <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--secondary)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                $50 Deposit Required to Anchor the Dimension
               </p>
             </div>
-
-            <div className="price-summary">
-              <div className="price-row">
-                <span>Individual Ticket</span>
-                <span>${TICKET_PRICE}</span>
-              </div>
-              <div className="price-row">
-                <span>Guests</span>
-                <span>x {guests}</span>
-              </div>
-              <div className="price-total">
-                <span>Estimated Total</span>
-                <span>${guests * TICKET_PRICE}</span>
-              </div>
-            </div>
-
-            <button className="btn-primary" style={{ width: '100%', border: 'none', cursor: 'pointer' }}>
-              Create Group & Pay Deposit
-            </button>
-            <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.9rem', color: 'var(--secondary)' }}>
-              Pay a $50 deposit now. We'll email you a link for your guests to pay their individual tickets.
-            </p>
-          </div>
-        </section>
-
-        <section className="how-it-works" style={{ marginTop: '6rem' }}>
-          <div className="section-title">
-            <h2>How It Works</h2>
-          </div>
-          
-          <div className="steps-grid">
-            <div className="step-card">
-              <div className="step-image">Step 01: The Canvas</div>
-              <div className="step-content">
-                <div className="step-number">01</div>
-                <h3>Choose Your Base</h3>
-                <p>Start from the ground up. Select from our massive collection of vintage rugs and flooring options to set the mood for your room.</p>
-              </div>
-            </div>
-
-            <div className="step-card">
-              <div className="step-image">Step 02: Selection</div>
-              <div className="step-content">
-                <div className="step-number">02</div>
-                <h3>Pick the Heavy Hitters</h3>
-                <p>Wander through our warehouse and hand-select the sofas, armoires, and tables that speak to you. Don't worry about the weight—just point!</p>
-              </div>
-            </div>
-
-            <div className="step-card">
-              <div className="step-image">Step 03: The Muscle</div>
-              <div className="step-content">
-                <div className="step-number">03</div>
-                <h3>The Heavy Lifting</h3>
-                <p>Our strapping "Fun Shui Team" takes over. They'll move your selections into place exactly where you want them, so you can keep your hands free for your wine.</p>
-              </div>
-            </div>
-
-            <div className="step-card">
-              <div className="step-image">Step 04: The Polish</div>
-              <div className="step-content">
-                <div className="step-number">04</div>
-                <h3>Sip and Walk</h3>
-                <p>Now for the fun part. Sip your wine and browse our smaller inventory of lamps, art, and decor to put those perfect finishing touches on your masterpiece.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </main>
 
       <footer>
-        <p>&copy; 2026 Fun Shui | Asheville, NC</p>
+        <img src={logo} alt="Fun Shui Logo" style={{ maxWidth: '100px', marginBottom: '2rem', opacity: 0.5 }} />
+        <p style={{ letterSpacing: '2px', fontSize: '0.8rem' }}>&copy; 2026 FUN SHUI | ASHEVILLE MULTIVERSE</p>
       </footer>
     </div>
   )
