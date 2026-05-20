@@ -15,11 +15,23 @@ function App() {
 
       <main>
         <section className="hero">
-          <h2>REARRANGE YOUR REALITY</h2>
-          <p>Asheville's Immersive Furniture Playground</p>
-          <div style={{ display: 'flex', gap: '2rem' }}>
-            <a href="#booking" className="btn-primary">Pick a Portal</a>
-            <a href="tel:+19193580755" className="btn-secondary">Talk to a Sommelier</a>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero-video"
+          >
+            <source src="/short.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-overlay"></div>
+          <div className="hero-content">
+            <h2>REARRANGE YOUR REALITY</h2>
+            <p>Asheville's Immersive Furniture Playground</p>
+            <div style={{ display: 'flex', gap: '2rem' }}>
+              <a href="#booking" className="btn-primary">Pick a Portal</a>
+              <a href="tel:+19193580755" className="btn-secondary">Talk to a Sommelier</a>
+            </div>
           </div>
         </section>
 
