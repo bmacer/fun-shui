@@ -228,10 +228,24 @@
             
             const span = document.createElement('span');
             span.textContent = todo.task;
+            span.style.flexGrow = '1';
             if (todo.is_completed) span.style.textDecoration = 'line-through';
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML = '🗑️';
+            deleteBtn.style.background = 'none';
+            deleteBtn.style.border = 'none';
+            deleteBtn.style.cursor = 'pointer';
+            deleteBtn.style.fontSize = '1.2rem';
+            deleteBtn.style.opacity = '0.6';
+            deleteBtn.title = 'Delete Milestone';
+            deleteBtn.onmouseover = () => deleteBtn.style.opacity = '1';
+            deleteBtn.onmouseout = () => deleteBtn.style.opacity = '0.6';
+            deleteBtn.onclick = () => deleteTodo(todo.id, todo.task);
             
             li.appendChild(checkbox);
             li.appendChild(span);
+            li.appendChild(deleteBtn);
             list.appendChild(li);
         });
     }
@@ -259,6 +273,18 @@
             .eq('id', id);
 
         if (error) console.error('Error updating:', error);
+        else fetchTodos();
+    }
+
+    async function deleteTodo(id, task) {
+        if (!confirm(`Are you sure you want to delete "${task}"?`)) return;
+
+        const { error } = await supabaseClient
+            .from('todos')
+            .delete()
+            .eq('id', id);
+
+        if (error) console.error('Error deleting:', error);
         else fetchTodos();
     }
 
