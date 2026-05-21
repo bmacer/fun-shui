@@ -289,7 +289,7 @@
         
         const { error } = await supabaseClient
             .from('categories')
-            .insert([{ title, tag_text: tag, display_order: Date.now() }]);
+            .insert([{ title, tag_text: tag, display_order: Math.floor(Date.now() / 1000) }]);
         
         if (error) alert(error.message);
         else fetchData();
@@ -302,7 +302,7 @@
         
         const { error } = await supabaseClient
             .from('items')
-            .insert([{ category_id: categoryId, label, description, display_order: Date.now() }]);
+            .insert([{ category_id: categoryId, label, description, display_order: Math.floor(Date.now() / 1000) }]);
         
         if (error) alert(error.message);
         else fetchData();
