@@ -167,8 +167,100 @@
                 <li><strong>Social Shareables:</strong> Ready-to-post content for every participant.</li>
             </ul>
         </div>
+
+        <div class="card" style="grid-column: 1 / -1; border-top: 4px solid var(--primary);">
+            <span class="tag">Operational Tracking</span>
+            <h2>Launch Roadmap</h2>
+            <div id="todo-app">
+                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                    <input type="text" id="new-task" placeholder="Add a milestone..." style="flex-grow: 1; padding: 10px; border: 1px solid var(--primary); border-radius: 4px;">
+                    <button onclick="addTodo()" style="background: var(--primary); color: var(--accent); border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">ADD</button>
+                </div>
+                <ul id="todo-list" style="list-style: none; padding: 0;">
+                    <li style="opacity: 0.5;">Connecting to dimension...</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // Replace these with your actual Supabase URL and Anon Key
+    const SUPABASE_URL = 'https://ypspyonykttkjesbxzxz.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_z3s6EmmLejujAYcka0B7ew_yt1oh3G6';
+    
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function fetchTodos() {
+        const { data, error } = await supabase
+            .from('todos')
+            .select('*')
+            .order('created_at', { ascending: true });
+        
+        if (error) console.error('Error fetching:', error);
+        else renderTodos(data);
+    }
+
+    function renderTodos(todos) {
+        const list = document.getElementById('todo-list');
+        list.innerHTML = todos.length ? '' : '<li style="opacity: 0.5;">No milestones set yet.</li>';
+        todos.forEach(todo => {
+            const li = document.createElement('li');
+            li.style.display = 'flex';
+            li.style.alignItems = 'center';
+            li.style.gap = '10px';
+            li.style.padding = '10px 0';
+            li.style.borderBottom = '1px solid #eee';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = todo.is_completed;
+            checkbox.onchange = () => toggleTodo(todo.id, todo.is_completed);
+            
+            const span = document.createElement('span');
+            span.textContent = todo.task;
+            if (todo.is_completed) span.style.textDecoration = 'line-through';
+            
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            list.appendChild(li);
+        });
+    }
+
+    async function addTodo() {
+        const input = document.getElementById('new-task');
+        const task = input.value.trim();
+        if (!task) return;
+
+        const { error } = await supabase
+            .from('todos')
+            .insert([{ task }]);
+
+        if (error) console.error('Error adding:', error);
+        else {
+            input.value = '';
+            fetchTodos();
+        }
+    }
+
+    async function toggleTodo(id, currentStatus) {
+        const { error } = await supabase
+            .from('todos')
+            .update({ is_completed: !currentStatus })
+            .eq('id', id);
+
+        if (error) console.error('Error updating:', error);
+        else fetchTodos();
+    }
+
+    // Initial load
+    if (SUPABASE_KEY !== 'YOUR_ANON_KEY_HERE') {
+        fetchTodos();
+    } else {
+        document.getElementById('todo-list').innerHTML = '<li style="color: red;">Please set your Supabase Anon Key in the code.</li>';
+    }
+</script>
 
 <footer>
     &copy; 2026 Fun Shui | Confidential Business Model
