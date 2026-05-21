@@ -190,10 +190,10 @@
     const SUPABASE_URL = 'https://ypspyonykttkjesbxzxz.supabase.co';
     const SUPABASE_KEY = 'sb_publishable_z3s6EmmLejujAYcka0B7ew_yt1oh3G6';
     
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     async function fetchTodos() {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('todos')
             .select('*')
             .order('created_at', { ascending: true });
@@ -233,7 +233,7 @@
         const task = input.value.trim();
         if (!task) return;
 
-        const { error } = await supabase
+        const { error } = await supabaseClient
             .from('todos')
             .insert([{ task }]);
 
@@ -245,7 +245,7 @@
     }
 
     async function toggleTodo(id, currentStatus) {
-        const { error } = await supabase
+        const { error } = await supabaseClient
             .from('todos')
             .update({ is_completed: !currentStatus })
             .eq('id', id);
