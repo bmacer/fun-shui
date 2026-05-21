@@ -173,9 +173,13 @@
 <div class="admin-toggle" onclick="toggleAdminMode()" title="Toggle Admin Mode">🛠️</div>
 
 <div class="container">
-    <div class="highlight-box">
-        <h2>The Concept</h2>
-        <p>A "ladies night out" furniture arrangement business. A tactile, social alternative to Sip & Paint and Escape Rooms, leveraging Asheville's unique vintage aesthetic.</p>
+    <div id="concept-section" class="highlight-box">
+        <h2 id="concept-title">Connecting...</h2>
+        <p id="concept-text"></p>
+        <div class="admin-controls">
+            <button onclick="editContent('concept_title')" class="btn-small">Edit Title</button>
+            <button onclick="editContent('concept_text')" class="btn-small">Edit Text</button>
+        </div>
     </div>
 
     <div id="dynamic-grid" class="grid">
@@ -210,6 +214,10 @@
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     async function fetchData() {
+        const { data: pageContent, error: pageError } = await supabaseClient
+            .from('page_content')
+            .select('*');
+
         const { data: categories, error: catError } = await supabaseClient
             .from('categories')
             .select('*')
@@ -220,12 +228,20 @@
             .select('*')
             .order('display_order', { ascending: true });
 
-        if (catError || itemError) {
-            console.error('Error fetching data:', catError || itemError);
+        if (catError || itemError || pageError) {
+            console.error('Error fetching data:', catError || itemError || pageError);
             return;
         }
 
+        renderPageContent(pageContent);
         renderGrid(categories, items);
+    }
+
+    function renderPageContent(content) {
+        content.forEach(item => {
+            const el = document.getElementById(item.key.replace('_', '-'));
+            if (el) el.textContent = item.value;
+        });
     }
 
     function renderGrid(categories, items) {
@@ -333,6 +349,20 @@
     // --- Admin Functions ---
     window.toggleAdminMode = () => {
         document.body.classList.toggle('admin-mode');
+    };
+
+    window.editContent = async (key) => {
+        const currentText = document.getElementById(key.replace('_', '-')).textContent;
+        const newValue = prompt(`Edit ${key.replace('_', ' ')}:`, currentText);
+        if (newValue === null || newValue === currentText) return;
+
+        const { error } = await supabaseClient
+            .from('page_content')
+            .update({ value: newValue })
+            .eq('key', key);
+
+        if (error) alert(error.message);
+        else fetchData();
     };
 
     window.addCategory = async () => {
