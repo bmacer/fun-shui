@@ -243,11 +243,39 @@
             const title = document.createElement('h2');
             title.textContent = cat.title;
 
-            const deleteCat = document.createElement('span');
-            deleteCat.className = 'delete-icon';
-            deleteCat.innerHTML = ' 🗑️';
-            deleteCat.onclick = () => deleteCategory(cat.id, cat.title);
-            title.appendChild(deleteCat);
+            const deleteContainer = document.createElement('span');
+            deleteContainer.className = 'delete-icon';
+            
+            const trashIcon = document.createElement('span');
+            trashIcon.innerHTML = ' 🗑️';
+            trashIcon.style.cursor = 'pointer';
+            
+            const confirmSpan = document.createElement('span');
+            confirmSpan.style.display = 'none';
+            confirmSpan.style.fontSize = '0.8rem';
+            confirmSpan.style.marginLeft = '10px';
+            confirmSpan.innerHTML = `
+                <button class="btn-small" style="background: #ff4444; color: white; border: none;">Delete?</button>
+                <button class="btn-small" style="background: #ccc; border: none;">Cancel</button>
+            `;
+
+            trashIcon.onclick = (e) => {
+                e.stopPropagation();
+                trashIcon.style.display = 'none';
+                confirmSpan.style.display = 'inline';
+            };
+
+            const [confirmBtn, cancelBtn] = confirmSpan.querySelectorAll('button');
+            confirmBtn.onclick = () => deleteCategory(cat.id);
+            cancelBtn.onclick = (e) => {
+                e.stopPropagation();
+                trashIcon.style.display = 'inline';
+                confirmSpan.style.display = 'none';
+            };
+
+            deleteContainer.appendChild(trashIcon);
+            deleteContainer.appendChild(confirmSpan);
+            title.appendChild(deleteContainer);
 
             const ul = document.createElement('ul');
             const catItems = items.filter(i => i.category_id === cat.id);
@@ -256,11 +284,36 @@
                 const li = document.createElement('li');
                 li.innerHTML = `<strong>${item.label}:</strong> ${item.description || ''}`;
                 
-                const deleteItemBtn = document.createElement('span');
-                deleteItemBtn.className = 'delete-icon';
-                deleteItemBtn.innerHTML = ' 🗑️';
-                deleteItemBtn.onclick = () => deleteItem(item.id, item.label);
-                li.appendChild(deleteItemBtn);
+                const itemDeleteContainer = document.createElement('span');
+                itemDeleteContainer.className = 'delete-icon';
+
+                const itemTrash = document.createElement('span');
+                itemTrash.innerHTML = ' 🗑️';
+                itemTrash.style.cursor = 'pointer';
+
+                const itemConfirm = document.createElement('span');
+                itemConfirm.style.display = 'none';
+                itemConfirm.style.fontSize = '0.7rem';
+                itemConfirm.innerHTML = `
+                    <button class="btn-small" style="background: #ff4444; color: white; border: none;">Sure?</button>
+                    <button class="btn-small" style="background: #ccc; border: none;">X</button>
+                `;
+
+                itemTrash.onclick = () => {
+                    itemTrash.style.display = 'none';
+                    itemConfirm.style.display = 'inline';
+                };
+
+                const [iConfirm, iCancel] = itemConfirm.querySelectorAll('button');
+                iConfirm.onclick = () => deleteItem(item.id);
+                iCancel.onclick = () => {
+                    itemTrash.style.display = 'inline';
+                    itemConfirm.style.display = 'none';
+                };
+
+                itemDeleteContainer.appendChild(itemTrash);
+                itemDeleteContainer.appendChild(itemConfirm);
+                li.appendChild(itemDeleteContainer);
                 
                 ul.appendChild(li);
             });
@@ -308,15 +361,13 @@
         else fetchData();
     };
 
-    window.deleteCategory = async (id, title) => {
-        if (!confirm(`Delete entire category "${title}" and all its items?`)) return;
+    window.deleteCategory = async (id) => {
         const { error } = await supabaseClient.from('categories').delete().eq('id', id);
         if (error) alert(error.message);
         else fetchData();
     };
 
-    window.deleteItem = async (id, label) => {
-        if (!confirm(`Delete item "${label}"?`)) return;
+    window.deleteItem = async (id) => {
         const { error } = await supabaseClient.from('items').delete().eq('id', id);
         if (error) alert(error.message);
         else fetchData();
@@ -348,15 +399,40 @@
             span.style.flexGrow = '1';
             if (todo.is_completed) span.style.textDecoration = 'line-through';
 
-            const del = document.createElement('span');
-            del.className = 'delete-icon';
-            del.style.display = 'inline-block'; // Always show for roadmap for now
-            del.innerHTML = '🗑️';
-            del.onclick = () => deleteTodo(todo.id, todo.task);
+            const delContainer = document.createElement('span');
+            delContainer.className = 'delete-icon';
+            delContainer.style.display = 'inline-block';
+            
+            const delTrash = document.createElement('span');
+            delTrash.innerHTML = '🗑️';
+            delTrash.style.cursor = 'pointer';
+
+            const delConfirm = document.createElement('span');
+            delConfirm.style.display = 'none';
+            delConfirm.style.fontSize = '0.7rem';
+            delConfirm.innerHTML = `
+                <button class="btn-small" style="background: #ff4444; color: white; border: none;">Del?</button>
+                <button class="btn-small" style="background: #ccc; border: none;">X</button>
+            `;
+
+            delTrash.onclick = () => {
+                delTrash.style.display = 'none';
+                delConfirm.style.display = 'inline';
+            };
+
+            const [dConfirm, dCancel] = delConfirm.querySelectorAll('button');
+            dConfirm.onclick = () => deleteTodo(todo.id);
+            dCancel.onclick = () => {
+                delTrash.style.display = 'inline';
+                delConfirm.style.display = 'none';
+            };
+
+            delContainer.appendChild(delTrash);
+            delContainer.appendChild(delConfirm);
             
             li.appendChild(checkbox);
             li.appendChild(span);
-            li.appendChild(del);
+            li.appendChild(delContainer);
             list.appendChild(li);
         });
     }
@@ -375,11 +451,9 @@
         fetchTodos();
     }
 
-    async function deleteTodo(id, task) {
-        if (confirm(`Delete roadmap item "${task}"?`)) {
-            await supabaseClient.from('todos').delete().eq('id', id);
-            fetchTodos();
-        }
+    async function deleteTodo(id) {
+        await supabaseClient.from('todos').delete().eq('id', id);
+        fetchTodos();
     }
 
     // Initial Load
