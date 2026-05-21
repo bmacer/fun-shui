@@ -58,6 +58,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-top: 4px solid var(--accent);
+            position: relative;
         }
 
         .card h2 {
@@ -86,10 +87,12 @@
 
         ul {
             padding-left: 1.2rem;
+            list-style-type: none;
         }
 
         li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
         }
 
         .tag {
@@ -112,6 +115,53 @@
             font-size: 0.9rem;
             border-top: 3px solid var(--accent);
         }
+
+        .admin-controls {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ccc;
+            display: none;
+        }
+
+        body.admin-mode .admin-controls {
+            display: block;
+        }
+
+        body.admin-mode .delete-icon {
+            display: inline-block;
+        }
+
+        .delete-icon {
+            display: none;
+            cursor: pointer;
+            margin-left: 5px;
+            opacity: 0.5;
+        }
+
+        .delete-icon:hover {
+            opacity: 1;
+        }
+
+        .btn-small {
+            font-size: 0.7rem;
+            padding: 2px 5px;
+            background: #eee;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .admin-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -120,66 +170,33 @@
     <img src="logo.png" alt="Fun Shui Logo" class="logo-img">
 </header>
 
+<div class="admin-toggle" onclick="toggleAdminMode()" title="Toggle Admin Mode">🛠️</div>
+
 <div class="container">
     <div class="highlight-box">
         <h2>The Concept</h2>
         <p>A "ladies night out" furniture arrangement business. A tactile, social alternative to Sip & Paint and Escape Rooms, leveraging Asheville's unique vintage aesthetic.</p>
     </div>
 
-    <div class="grid">
-        <div class="card">
-            <span class="tag">Target Audience</span>
-            <h2>Who It's For</h2>
-            <ul>
-                <li><strong>Bachelorette Parties:</strong> The ultimate Instagrammable group activity.</li>
-                <li><strong>Asheville Tourists:</strong> Seeking a "uniquely Asheville" evening.</li>
-                <li><strong>Corporate Teams:</strong> Low-stress, high-collaboration team building.</li>
-                <li><strong>Local Friends:</strong> A fresh alternative to the standard bar scene.</li>
-            </ul>
-        </div>
+    <div id="dynamic-grid" class="grid">
+        <!-- Cards will be injected here -->
+    </div>
 
-        <div class="card">
-            <span class="tag">Revenue Streams</span>
-            <h2>Business Model</h2>
-            <ul>
-                <li><strong>Experience Tickets:</strong> Core per-person event pricing.</li>
-                <li><strong>Boutique Wine Bar:</strong> Integrated wine sales during the session.</li>
-                <li><strong>Retail Corner:</strong> Small-scale boutique shopping within the space.</li>
-            </ul>
-        </div>
+    <div class="admin-controls" style="text-align: center; margin-bottom: 4rem;">
+        <button onclick="addCategory()" class="tag" style="cursor: pointer; border: none;">+ Add New Category</button>
+    </div>
 
-        <div class="card">
-            <span class="tag">The Experience</span>
-            <h2>Core Mechanics</h2>
-            <ul>
-                <li><strong>Multiple Rooms:</strong> Parallel sessions or Room-vs-Room competition.</li>
-                <li><strong>Local Inventory:</strong> Vast selection of Asheville vintage & thrifted pieces.</li>
-                <li><strong>Facilitated Fun:</strong> High-energy hosts to guide the "play."</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <span class="tag">Digital Artifacts</span>
-            <h2>The Takeaway</h2>
-            <ul>
-                <li><strong>3D Model:</strong> A digital twin of the group's finished room design.</li>
-                <li><strong>AI Highlight Reel:</strong> (Stretch) Automated video of the night's best moments.</li>
-                <li><strong>Social Shareables:</strong> Ready-to-post content for every participant.</li>
-            </ul>
-        </div>
-
-        <div class="card" style="grid-column: 1 / -1; border-top: 4px solid var(--primary);">
-            <span class="tag">Operational Tracking</span>
-            <h2>Launch Roadmap</h2>
-            <div id="todo-app">
-                <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-                    <input type="text" id="new-task" placeholder="Add a milestone..." style="flex-grow: 1; padding: 10px; border: 1px solid var(--primary); border-radius: 4px;">
-                    <button onclick="addTodo()" style="background: var(--primary); color: var(--accent); border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">ADD</button>
-                </div>
-                <ul id="todo-list" style="list-style: none; padding: 0;">
-                    <li style="opacity: 0.5;">Connecting to dimension...</li>
-                </ul>
+    <div class="card" style="margin-top: 4rem; border-top: 4px solid var(--primary);">
+        <span class="tag">Operational Tracking</span>
+        <h2>Launch Roadmap</h2>
+        <div id="todo-app">
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input type="text" id="new-task" placeholder="Add a milestone..." style="flex-grow: 1; padding: 10px; border: 1px solid var(--primary); border-radius: 4px;">
+                <button onclick="addTodo()" style="background: var(--primary); color: var(--accent); border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold;">ADD</button>
             </div>
+            <ul id="todo-list" style="list-style: none; padding: 0;">
+                <li style="opacity: 0.5;">Connecting to dimension...</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -192,34 +209,134 @@
     
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    async function fetchTodos() {
-        const { data, error } = await supabaseClient
-            .from('todos')
+    async function fetchData() {
+        const { data: categories, error: catError } = await supabaseClient
+            .from('categories')
             .select('*')
-            .order('created_at', { ascending: true });
-        
-        if (error) {
-            console.error('Error fetching:', error);
-            document.getElementById('todo-list').innerHTML = `<li style="color: red;">Error: ${error.message}</li>`;
-        } else {
-            renderTodos(data);
+            .order('display_order', { ascending: true });
+
+        const { data: items, error: itemError } = await supabaseClient
+            .from('items')
+            .select('*')
+            .order('display_order', { ascending: true });
+
+        if (catError || itemError) {
+            console.error('Error fetching data:', catError || itemError);
+            return;
         }
+
+        renderGrid(categories, items);
+    }
+
+    function renderGrid(categories, items) {
+        const grid = document.getElementById('dynamic-grid');
+        grid.innerHTML = '';
+
+        categories.forEach(cat => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const tag = document.createElement('span');
+            tag.className = 'tag';
+            tag.textContent = cat.tag_text || 'Category';
+            
+            const title = document.createElement('h2');
+            title.textContent = cat.title;
+
+            const deleteCat = document.createElement('span');
+            deleteCat.className = 'delete-icon';
+            deleteCat.innerHTML = ' 🗑️';
+            deleteCat.onclick = () => deleteCategory(cat.id, cat.title);
+            title.appendChild(deleteCat);
+
+            const ul = document.createElement('ul');
+            const catItems = items.filter(i => i.category_id === cat.id);
+            
+            catItems.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.label}:</strong> ${item.description || ''}`;
+                
+                const deleteItemBtn = document.createElement('span');
+                deleteItemBtn.className = 'delete-icon';
+                deleteItemBtn.innerHTML = ' 🗑️';
+                deleteItemBtn.onclick = () => deleteItem(item.id, item.label);
+                li.appendChild(deleteItemBtn);
+                
+                ul.appendChild(li);
+            });
+
+            const adminControls = document.createElement('div');
+            adminControls.className = 'admin-controls';
+            adminControls.innerHTML = `<button onclick="addItem(${cat.id})" class="btn-small">+ Add Item</button>`;
+
+            card.appendChild(tag);
+            card.appendChild(title);
+            card.appendChild(ul);
+            card.appendChild(adminControls);
+            grid.appendChild(card);
+        });
+    }
+
+    // --- Admin Functions ---
+    window.toggleAdminMode = () => {
+        document.body.classList.toggle('admin-mode');
+    };
+
+    window.addCategory = async () => {
+        const title = prompt("Category Title (e.g. Who It's For):");
+        if (!title) return;
+        const tag = prompt("Tag Text (e.g. Target Audience):");
+        
+        const { error } = await supabaseClient
+            .from('categories')
+            .insert([{ title, tag_text: tag, display_order: Date.now() }]);
+        
+        if (error) alert(error.message);
+        else fetchData();
+    };
+
+    window.addItem = async (categoryId) => {
+        const label = prompt("Item Label (e.g. Bachelorette Parties):");
+        if (!label) return;
+        const description = prompt("Description:");
+        
+        const { error } = await supabaseClient
+            .from('items')
+            .insert([{ category_id: categoryId, label, description, display_order: Date.now() }]);
+        
+        if (error) alert(error.message);
+        else fetchData();
+    };
+
+    window.deleteCategory = async (id, title) => {
+        if (!confirm(`Delete entire category "${title}" and all its items?`)) return;
+        const { error } = await supabaseClient.from('categories').delete().eq('id', id);
+        if (error) alert(error.message);
+        else fetchData();
+    };
+
+    window.deleteItem = async (id, label) => {
+        if (!confirm(`Delete item "${label}"?`)) return;
+        const { error } = await supabaseClient.from('items').delete().eq('id', id);
+        if (error) alert(error.message);
+        else fetchData();
+    };
+
+    // --- TODO Logic ---
+    async function fetchTodos() {
+        const { data, error } = await supabaseClient.from('todos').select('*').order('created_at', { ascending: true });
+        if (error) console.error(error);
+        else renderTodos(data);
     }
 
     function renderTodos(todos) {
         const list = document.getElementById('todo-list');
-        if (!todos) {
-            list.innerHTML = '<li style="opacity: 0.5;">No milestones set yet.</li>';
-            return;
-        }
         list.innerHTML = todos.length ? '' : '<li style="opacity: 0.5;">No milestones set yet.</li>';
         todos.forEach(todo => {
             const li = document.createElement('li');
             li.style.display = 'flex';
             li.style.alignItems = 'center';
             li.style.gap = '10px';
-            li.style.padding = '10px 0';
-            li.style.borderBottom = '1px solid #eee';
             
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
@@ -231,67 +348,42 @@
             span.style.flexGrow = '1';
             if (todo.is_completed) span.style.textDecoration = 'line-through';
 
-            const deleteBtn = document.createElement('button');
-            deleteBtn.innerHTML = '🗑️';
-            deleteBtn.style.background = 'none';
-            deleteBtn.style.border = 'none';
-            deleteBtn.style.cursor = 'pointer';
-            deleteBtn.style.fontSize = '1.2rem';
-            deleteBtn.style.opacity = '0.6';
-            deleteBtn.title = 'Delete Milestone';
-            deleteBtn.onmouseover = () => deleteBtn.style.opacity = '1';
-            deleteBtn.onmouseout = () => deleteBtn.style.opacity = '0.6';
-            deleteBtn.onclick = () => deleteTodo(todo.id, todo.task);
+            const del = document.createElement('span');
+            del.className = 'delete-icon';
+            del.style.display = 'inline-block'; // Always show for roadmap for now
+            del.innerHTML = '🗑️';
+            del.onclick = () => deleteTodo(todo.id, todo.task);
             
             li.appendChild(checkbox);
             li.appendChild(span);
-            li.appendChild(deleteBtn);
+            li.appendChild(del);
             list.appendChild(li);
         });
     }
 
-    async function addTodo() {
+    window.addTodo = async () => {
         const input = document.getElementById('new-task');
         const task = input.value.trim();
         if (!task) return;
+        await supabaseClient.from('todos').insert([{ task }]);
+        input.value = '';
+        fetchTodos();
+    };
 
-        const { error } = await supabaseClient
-            .from('todos')
-            .insert([{ task }]);
+    async function toggleTodo(id, current) {
+        await supabaseClient.from('todos').update({ is_completed: !current }).eq('id', id);
+        fetchTodos();
+    }
 
-        if (error) console.error('Error adding:', error);
-        else {
-            input.value = '';
+    async function deleteTodo(id, task) {
+        if (confirm(`Delete roadmap item "${task}"?`)) {
+            await supabaseClient.from('todos').delete().eq('id', id);
             fetchTodos();
         }
     }
 
-    async function toggleTodo(id, currentStatus) {
-        const { error } = await supabaseClient
-            .from('todos')
-            .update({ is_completed: !currentStatus })
-            .eq('id', id);
-
-        if (error) console.error('Error updating:', error);
-        else fetchTodos();
-    }
-
-    async function deleteTodo(id, task) {
-        if (!confirm(`Are you sure you want to delete "${task}"?`)) return;
-
-        const { error } = await supabaseClient
-            .from('todos')
-            .delete()
-            .eq('id', id);
-
-        if (error) console.error('Error deleting:', error);
-        else fetchTodos();
-    }
-
-    // Attach to window so onclick handlers in HTML can find them
-    window.addTodo = addTodo;
-
-    // Initial load
+    // Initial Load
+    fetchData();
     fetchTodos();
 })();
 </script>
